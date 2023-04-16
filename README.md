@@ -88,4 +88,6 @@ class Handlers
 
 You can use splitter.py to split the packet capture into multiple files <br>
 Use `python splitter.py <filename>` to split the file
+Use `blacklist.txt` to blacklist certain packets
+Just type protoname in the file to blacklist it, separate them with `,`
 
