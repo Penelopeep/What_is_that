@@ -86,6 +86,6 @@ class Handlers
 ]
 ```
 
-You can use splitter.py to split the packet capture into multiple files
+You can use splitter.py to split the packet capture into multiple files <br>
 Use `python splitter.py <filename>` to split the file
 
