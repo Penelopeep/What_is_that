@@ -7,6 +7,10 @@ blacklist = []
 if os.path.exists("blacklist.txt"):
     with open("blacklist.txt", "r") as f:
         blacklist = str(f.read()).split(",")
+
+if not os.path.exists("./splitted-packets"):
+    os.mkdir("./splitted-packets")
+
 if len(sys.argv) == 2:
     filename = sys.argv[1]
 else:
