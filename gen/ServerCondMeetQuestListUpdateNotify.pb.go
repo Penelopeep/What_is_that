@@ -27,8 +27,8 @@ type ServerCondMeetQuestListUpdateNotify struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AddQuestIdList []uint32 `protobuf:"varint,9,rep,packed,name=add_quest_id_list,json=addQuestIdList,proto3" json:"add_quest_id_list,omitempty"` // GNFJHCIHOBE
-	DelQuestIdList []uint32 `protobuf:"varint,5,rep,packed,name=del_quest_id_list,json=delQuestIdList,proto3" json:"del_quest_id_list,omitempty"` // EOMIKDEBBGN
+	AddQuestIdList []uint32 `protobuf:"varint,9,rep,packed,name=add_quest_id_list,json=addQuestIdList,proto3" json:"add_quest_id_list,omitempty"` //GNFJHCIHOBE
+	DelQuestIdList []uint32 `protobuf:"varint,5,rep,packed,name=del_quest_id_list,json=delQuestIdList,proto3" json:"del_quest_id_list,omitempty"` //EOMIKDEBBGN
 }
 
 func (x *ServerCondMeetQuestListUpdateNotify) Reset() {

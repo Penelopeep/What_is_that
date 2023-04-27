@@ -37,7 +37,7 @@ type ActivityInfo struct {
 	DNKBDEJAOMC              bool                    `protobuf:"varint,6,opt,name=DNKBDEJAOMC,proto3" json:"DNKBDEJAOMC,omitempty"`
 	MPCDIKMJOAC              bool                    `protobuf:"varint,2041,opt,name=MPCDIKMJOAC,proto3" json:"MPCDIKMJOAC,omitempty"`
 	CurScore                 uint32                  `protobuf:"varint,882,opt,name=cur_score,json=curScore,proto3" json:"cur_score,omitempty"`
-	ActivityType             uint32                  `protobuf:"varint,11,opt,name=activity_type,json=activityType,proto3" json:"activity_type,omitempty"` // OIPEAKGOPDE
+	ActivityType             uint32                  `protobuf:"varint,11,opt,name=activity_type,json=activityType,proto3" json:"activity_type,omitempty"`
 	GODELKHIPDE              bool                    `protobuf:"varint,3,opt,name=GODELKHIPDE,proto3" json:"GODELKHIPDE,omitempty"`
 	DLNNGPNHBFB              bool                    `protobuf:"varint,1789,opt,name=DLNNGPNHBFB,proto3" json:"DLNNGPNHBFB,omitempty"`
 	FirstDayStartTime        uint32                  `protobuf:"varint,617,opt,name=first_day_start_time,json=firstDayStartTime,proto3" json:"first_day_start_time,omitempty"`

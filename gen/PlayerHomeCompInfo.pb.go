@@ -27,8 +27,8 @@ type PlayerHomeCompInfo struct {
 	unknownFields protoimpl.UnknownFields
 
 	SeenModuleIdList          []uint32              `protobuf:"varint,4,rep,packed,name=seen_module_id_list,json=seenModuleIdList,proto3" json:"seen_module_id_list,omitempty"`
-	UnlockedModuleIdList      []uint32              `protobuf:"varint,5,rep,packed,name=unlocked_module_id_list,json=unlockedModuleIdList,proto3" json:"unlocked_module_id_list,omitempty"`                  // BPAOEFJJFPI
-	LevelupRewardGotLevelList []uint32              `protobuf:"varint,2,rep,packed,name=levelup_reward_got_level_list,json=levelupRewardGotLevelList,proto3" json:"levelup_reward_got_level_list,omitempty"` // CKMGNKPLJPI
+	UnlockedModuleIdList      []uint32              `protobuf:"varint,5,rep,packed,name=unlocked_module_id_list,json=unlockedModuleIdList,proto3" json:"unlocked_module_id_list,omitempty"`
+	LevelupRewardGotLevelList []uint32              `protobuf:"varint,2,rep,packed,name=levelup_reward_got_level_list,json=levelupRewardGotLevelList,proto3" json:"levelup_reward_got_level_list,omitempty"`
 	FriendEnterHomeOption     FriendEnterHomeOption `protobuf:"varint,11,opt,name=friend_enter_home_option,json=friendEnterHomeOption,proto3,enum=FriendEnterHomeOption" json:"friend_enter_home_option,omitempty"`
 }
 

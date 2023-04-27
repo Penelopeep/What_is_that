@@ -22,10 +22,10 @@ try:
     json_file.close()
     for i in json_data:
         if i["protoName"] in blacklist:
-            print(f"Skipped: {i['protoName']} at {datetime.fromtimestamp(round(i['time'], 0))}")
+            print(f"Skipped: {i['index']} {i['protoName']} at {datetime.fromtimestamp(round(i['time'], 0))}")
             continue
-        print(f"Extracted: {i['protoName']} at {datetime.fromtimestamp(round(i['time'], 0))}")
-        with open(f'./splitted-packets/{str(datetime.fromtimestamp(round(i["time"], 0))).replace(":",",")} - {i["protoName"]}.json', "w") as f:
+        print(f"Extracted: {i['index']} {i['protoName']} at {datetime.fromtimestamp(round(i['time'], 0))}")
+        with open(f'./splitted-packets/{i["index"]} - {str(datetime.fromtimestamp(round(i["time"], 0))).replace(":",",")} - {i["protoName"]}.json', "w") as f:
             json.dump(i["object"], f, indent=4)
 except FileNotFoundError:
     print("File not found")

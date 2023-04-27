@@ -124,7 +124,7 @@ func (r *Recorder) Start() {
 				Time:      data.time,
 				Object:    body,
 			}
-			colorlog.Info("Record %s -> %s %5d: %s", pack.Source, SourceDesc(data.source^1), data.cmd, pack.ProtoName)
+			colorlog.Info("Record %d %s -> %s %5d: %s", pack.Index, pack.Source, SourceDesc(data.source^1), data.cmd, pack.ProtoName)
 			r.packets = append(r.packets, pack)
 		}
 		r.save()

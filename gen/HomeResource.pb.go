@@ -27,8 +27,8 @@ type HomeResource struct {
 	unknownFields protoimpl.UnknownFields
 
 	NextRefreshTime uint32 `protobuf:"fixed32,9,opt,name=next_refresh_time,json=nextRefreshTime,proto3" json:"next_refresh_time,omitempty"`
-	StoreLimit      uint32 `protobuf:"varint,13,opt,name=store_limit,json=storeLimit,proto3" json:"store_limit,omitempty"` // GBBFEOLGIPA
-	StoreValue      uint32 `protobuf:"varint,10,opt,name=store_value,json=storeValue,proto3" json:"store_value,omitempty"` // ELNCBCIJMJJ
+	StoreLimit      uint32 `protobuf:"varint,13,opt,name=store_limit,json=storeLimit,proto3" json:"store_limit,omitempty"`
+	StoreValue      uint32 `protobuf:"varint,10,opt,name=store_value,json=storeValue,proto3" json:"store_value,omitempty"`
 }
 
 func (x *HomeResource) Reset() {

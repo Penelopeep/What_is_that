@@ -26,9 +26,9 @@ type HomeMarkPointSceneData struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	TeapotSpiritPos *Vector                       `protobuf:"bytes,6,opt,name=teapot_spirit_pos,json=teapotSpiritPos,proto3" json:"teapot_spirit_pos,omitempty"` // PEIAJDDGMIG
+	TeapotSpiritPos *Vector                       `protobuf:"bytes,6,opt,name=teapot_spirit_pos,json=teapotSpiritPos,proto3" json:"teapot_spirit_pos,omitempty"`
 	ModuleId        uint32                        `protobuf:"varint,5,opt,name=module_id,json=moduleId,proto3" json:"module_id,omitempty"`
-	SafePointPos    *Vector                       `protobuf:"bytes,3,opt,name=safe_point_pos,json=safePointPos,proto3" json:"safe_point_pos,omitempty"` // IPPBNCILPHJ
+	SafePointPos    *Vector                       `protobuf:"bytes,3,opt,name=safe_point_pos,json=safePointPos,proto3" json:"safe_point_pos,omitempty"`
 	FurnitureList   []*HomeMarkPointFurnitureData `protobuf:"bytes,2,rep,name=furniture_list,json=furnitureList,proto3" json:"furniture_list,omitempty"`
 	SceneId         uint32                        `protobuf:"varint,8,opt,name=scene_id,json=sceneId,proto3" json:"scene_id,omitempty"`
 }

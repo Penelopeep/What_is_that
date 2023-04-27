@@ -2,3 +2,6 @@ proto
 __debug*
 splitted-packets/*.json
 .idea
+log_*.json
+*.zip
+*.7z

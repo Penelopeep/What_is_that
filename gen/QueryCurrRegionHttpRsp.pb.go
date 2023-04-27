@@ -35,7 +35,7 @@ type QueryCurrRegionHttpRsp struct {
 	FPLPGEGEJJM                       string      `protobuf:"bytes,14,opt,name=FPLPGEGEJJM,proto3" json:"FPLPGEGEJJM,omitempty"`
 	// Types that are assignable to Detail:
 	//
-	//	*QueryCurrRegionHttpRsp_ForceUpdate
+	//	*QueryCurrRegionHttpRsp_ForceUdpate
 	//	*QueryCurrRegionHttpRsp_StopServer
 	Detail isQueryCurrRegionHttpRsp_Detail `protobuf_oneof:"detail"`
 }
@@ -128,9 +128,9 @@ func (m *QueryCurrRegionHttpRsp) GetDetail() isQueryCurrRegionHttpRsp_Detail {
 	return nil
 }
 
-func (x *QueryCurrRegionHttpRsp) GetForceUpdate() *ForceUpdateInfo {
-	if x, ok := x.GetDetail().(*QueryCurrRegionHttpRsp_ForceUpdate); ok {
-		return x.ForceUpdate
+func (x *QueryCurrRegionHttpRsp) GetForceUdpate() *ForceUpdateInfo {
+	if x, ok := x.GetDetail().(*QueryCurrRegionHttpRsp_ForceUdpate); ok {
+		return x.ForceUdpate
 	}
 	return nil
 }
@@ -146,15 +146,15 @@ type isQueryCurrRegionHttpRsp_Detail interface {
 	isQueryCurrRegionHttpRsp_Detail()
 }
 
-type QueryCurrRegionHttpRsp_ForceUpdate struct {
-	ForceUpdate *ForceUpdateInfo `protobuf:"bytes,4,opt,name=force_update,json=forceUpdate,proto3,oneof"`
+type QueryCurrRegionHttpRsp_ForceUdpate struct {
+	ForceUdpate *ForceUpdateInfo `protobuf:"bytes,4,opt,name=force_udpate,json=forceUdpate,proto3,oneof"`
 }
 
 type QueryCurrRegionHttpRsp_StopServer struct {
 	StopServer *StopServerInfo `protobuf:"bytes,5,opt,name=stop_server,json=stopServer,proto3,oneof"`
 }
 
-func (*QueryCurrRegionHttpRsp_ForceUpdate) isQueryCurrRegionHttpRsp_Detail() {}
+func (*QueryCurrRegionHttpRsp_ForceUdpate) isQueryCurrRegionHttpRsp_Detail() {}
 
 func (*QueryCurrRegionHttpRsp_StopServer) isQueryCurrRegionHttpRsp_Detail() {}
 
@@ -220,7 +220,7 @@ var file_QueryCurrRegionHttpRsp_proto_goTypes = []interface{}{
 }
 var file_QueryCurrRegionHttpRsp_proto_depIdxs = []int32{
 	1, // 0: QueryCurrRegionHttpRsp.region_info:type_name -> RegionInfo
-	2, // 1: QueryCurrRegionHttpRsp.force_update:type_name -> ForceUpdateInfo
+	2, // 1: QueryCurrRegionHttpRsp.force_udpate:type_name -> ForceUpdateInfo
 	3, // 2: QueryCurrRegionHttpRsp.stop_server:type_name -> StopServerInfo
 	3, // [3:3] is the sub-list for method output_type
 	3, // [3:3] is the sub-list for method input_type
@@ -252,7 +252,7 @@ func file_QueryCurrRegionHttpRsp_proto_init() {
 		}
 	}
 	file_QueryCurrRegionHttpRsp_proto_msgTypes[0].OneofWrappers = []interface{}{
-		(*QueryCurrRegionHttpRsp_ForceUpdate)(nil),
+		(*QueryCurrRegionHttpRsp_ForceUdpate)(nil),
 		(*QueryCurrRegionHttpRsp_StopServer)(nil),
 	}
 	type x struct{}
