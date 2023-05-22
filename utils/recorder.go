@@ -3,14 +3,14 @@ package utils
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/yezihack/colorlog"
+	"google.golang.org/protobuf/encoding/protojson"
 	"math/rand"
 	"os"
+	"strings"
 	"sync"
 	"sync/atomic"
 	"time"
-
-	"github.com/yezihack/colorlog"
-	"google.golang.org/protobuf/encoding/protojson"
 )
 
 type dumpPacket struct {
@@ -31,12 +31,14 @@ type recordPacket struct {
 }
 
 type Recorder struct {
-	i       int32
-	queue   *Queue[*recordPacket]
-	handler *PacketHandler
-	packets []*dumpPacket
-	pjson   *protojson.MarshalOptions
-	m       sync.Mutex
+	i         int32
+	queue     *Queue[*recordPacket]
+	handler   *PacketHandler
+	packets   []*dumpPacket
+	pjson     *protojson.MarshalOptions
+	m         sync.Mutex
+	blacklist []string
+	whitelist []string
 }
 
 const (
@@ -71,6 +73,44 @@ func (r *Recorder) save() {
 	colorlog.Info("log write to %s, with %d packet(s)", fileName, len(r.packets))
 }
 
+func (r *Recorder) savePacket(packet dumpPacket) {
+	content, err := json.MarshalIndent(packet, "", "  ")
+	if err != nil {
+		colorlog.Warn("saving packet failed, err: %+v", err)
+		return
+	}
+	if r.whitelist != nil {
+		for i := 0; i < len(r.whitelist); i++ {
+			//should I check for blacklist if packet is in whitelist? I don't think so
+			if packet.ProtoName == strings.TrimSpace(r.whitelist[i]) {
+				//colorlog.Warn("packet in whitelist, name: %s", packet.ProtoName) hiro's decision
+				fileName := fmt.Sprintf("./packets/%d_%s.json", packet.Index, packet.ProtoName)
+				err = os.WriteFile(fileName, content, 0644)
+				if err != nil {
+					colorlog.Warn("saving packet failed, err: %+v", err)
+					return
+				}
+				return
+			}
+		}
+	} else {
+		if r.blacklist != nil {
+			for i := 0; i < len(r.blacklist); i++ {
+				if packet.ProtoName == strings.TrimSpace(r.blacklist[i]) {
+					//colorlog.Warn("packet in blacklist, name: %s", packet.ProtoName) hiro's decision
+					return
+				}
+			}
+		}
+		fileName := fmt.Sprintf("./packets/%d_%s.json", packet.Index, packet.ProtoName)
+		err = os.WriteFile(fileName, content, 0644)
+		if err != nil {
+			colorlog.Warn("saving packet failed, err: %+v", err)
+			return
+		}
+	}
+}
+
 func (r *Recorder) Record(packet []byte, source, cmd int) {
 	data := make([]byte, len(packet))
 	copy(data, packet)
@@ -85,6 +125,30 @@ func (r *Recorder) Record(packet []byte, source, cmd int) {
 
 func (r *Recorder) Start() {
 	go func() {
+		dat, err := os.ReadFile("blacklist.txt")
+		if err != nil {
+			colorlog.Warn("reading blacklist failed, err: %+v", err)
+			r.blacklist = nil
+		} else {
+			if len(string(dat)) > 0 {
+				r.blacklist = strings.Split(string(dat), ",")
+			} else {
+				colorlog.Warn("empty blacklist")
+				r.blacklist = nil
+			}
+		}
+		dat, err = os.ReadFile("whitelist.txt")
+		if err != nil {
+			colorlog.Warn("reading whitelist failed, err: %+v", err)
+			r.whitelist = nil
+		} else {
+			if len(string(dat)) > 0 {
+				r.whitelist = strings.Split(string(dat), ",")
+			} else {
+				colorlog.Warn("empty whitelist")
+				r.whitelist = nil
+			}
+		}
 		r.m.Lock()
 		parser := r.handler
 		for {
@@ -126,6 +190,7 @@ func (r *Recorder) Start() {
 			}
 			colorlog.Info("Record %d %s -> %s %5d: %s", pack.Index, pack.Source, SourceDesc(data.source^1), data.cmd, pack.ProtoName)
 			r.packets = append(r.packets, pack)
+			r.savePacket(*pack)
 		}
 		r.save()
 		r.m.Unlock()

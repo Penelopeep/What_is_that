@@ -38,7 +38,7 @@ MHY will frequently update their resource files, so our hardcoded checksums are 
 
 4. (Known issue) Make sure your game was the first startup after start bypass mode. If it report decrypt data failed, please logout then completely quit the game and restart to re-login
 
-+ Make sure you have installed gcc and g++ on your system and added them to your PATH
++ Make sure you have installed gcc and g++ on your system and added them to your PATH (just install mingw)
 
 ## Fiddler Script
 ```cs
@@ -65,6 +65,11 @@ class Handlers
     }
 };
 ```
+## Usage of blacklist and whitelist
+- Open whitelist.txt/blacklist.txt
+- Add any packet by its name and separate them with ","
+- You can use spaces for convenience like this `"PingRsp, PingReq, WindSeedType3Notify, etc."`.
+- If you have whitelist enabled, you can't use blacklist (why would you even want to use both?).
 
 ## Note
 

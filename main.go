@@ -232,7 +232,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	err := utils.InitKey("../keys")
+	err := utils.InitKey("./keys")
 	if err != nil {
 		panic(err)
 	}
